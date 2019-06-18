@@ -4,6 +4,6 @@
 
 #### 执行命令如下：
 
-’‘’
+```
   ./gradlew assembleReleaseChannels
-‘’‘
+```
