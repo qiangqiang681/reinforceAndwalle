@@ -1,4 +1,4 @@
-package com.plugin.eliv.plugin
+package com.eliv.plugin
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.logging.LogLevel
@@ -39,15 +39,9 @@ open class AppReinforceTask : DefaultTask() {
         val channelsOutputFilePath =
             if (autoMultChannel) reinforceExtension.channelsOutputFilePath.checkNull("缺少渠道包输出路径") else ""
 
-        project.applicationVariants?.forEach {
-            logger.log(LogLevel.INFO, it.name)
-        }
-        logger.log(LogLevel.INFO, "" + project.applicationVariants!!.size)
         project.applicationVariants?.filter {
-            logger.log(LogLevel.INFO, "" + it.name+"*****"+it.flavorName)
             it.name.toLowerCase().contains("release", true)
         }?.forEach { appVariant ->
-            logger.log(LogLevel.INFO, appVariant.outputs.toString())
             val (storePath, storePassword, keyAlias, keyPassword) = appVariant.keystore
             appVariant.outputs.firstOrNull { it.outputFile.exists() }?.let { variant ->
                 val apkFile = variant.outputFile

@@ -1,80 +1,59 @@
 {
   "channelInfoList": [
     {
-      "channel": "Official",
-      "alias": "官网",
-      "extraInfo": {
-        "id": 1
-      }
-    },
-    {
-      "channel": "Official-Share",
-      "alias": "分享",
-      "extraInfo": {
-        "id": 2
-      }
-    },
-    {
       "channel": "Oppo",
       "alias": "oppo",
       "extraInfo": {
-        "id": 895
+        "id": 1
       }
     },
     {
       "channel": "Xiaomi",
       "alias": "小米",
       "extraInfo": {
-        "id": 720
+        "id": 2
       }
     },
     {
       "channel": "vivo",
       "alias": "vivo",
       "extraInfo": {
-        "id": 1032
+        "id": 3
       }
     },
     {
       "channel": "Huawei",
       "alias": "华为",
       "extraInfo": {
-        "id": 721
+        "id": 4
       }
     },
     {
       "channel": "Samsung",
       "alias": "三星",
       "extraInfo": {
-        "id": 961
+        "id": 5
       }
     },
     {
       "channel": "360",
       "alias": "360",
       "extraInfo": {
-        "id": 723
+        "id": 6
       }
     },
     {
       "channel": "Tencent",
       "alias": "应用宝",
       "extraInfo": {
-        "id": 722
-      }
-    },
-    {
-      "channel": "wandoujia",
-      "alias": "豌豆荚",
-      "extraInfo": {
-        "id": 1294
+        "id": 7
       }
     },
     {
       "channel": "Baidu",
       "alias": "百度",
       "extraInfo": {
-        "id": 719
+        "id": 8
       }
     }
   ]

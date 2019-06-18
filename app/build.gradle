@@ -4,6 +4,10 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'walle'
+
+apply plugin: 'com.eliv.plugin'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -14,19 +18,78 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword '123456'
+            storeFile file('test.jks')
+            storePassword '123456'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //混淆
+            minifyEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            zipAlignEnabled true
+            //加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            signingConfig signingConfigs.release
         }
+
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        disable 'InvalidPackage'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    walle {
+        // 指定渠道包的输出路径
+        apkOutputFolder = new File("${project.buildDir}/channels")
+        // 定制渠道包的APK的文件名称
+        apkFileNameFormat = 'Test_${versionName}_${versionCode}_${buildTime}_${channel}_${buildType}.apk'
+        // 渠道配置文件
+        configFile = new File("${project.getProjectDir()}/channelConfig.json")
+    }
+
+}
+
+AppReinforce {
+    reinforceType = "360"
+    autoMultChannel = true
+    walleChannelWritterPath = "${projectDir.path}/walle-cli-all.jar"
+    extraChannelFilePath = "${projectDir.path}/reinforceChannel.json"
+    channelsOutputFilePath = new File("${project.buildDir}/channels")
+
+    reinforce360 {
+        // 支持该加固
+        support = true
+        // 配置自己的360账号
+        user = '<360账号>'
+        // 配置自己的360账号密码
+        pass = '<360账号密码>'
+        // 配置自己的360加固文件路径
+        path = "${projectDir.path}/jiagu.jar"
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.meituan.android.walle:library:1.1.6'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

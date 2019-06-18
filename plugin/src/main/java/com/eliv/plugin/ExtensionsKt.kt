@@ -1,9 +1,8 @@
-package com.plugin.eliv.plugin
+package com.eliv.plugin
 
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.api.ApplicationVariant
 import org.gradle.api.Project
-import org.gradle.api.logging.LogLevel
 
 /**
  * Created by eliv on 19-6-13.
@@ -21,7 +20,6 @@ val Project.applicationVariants
         .findByType(AppExtension::class.java)
         ?.applicationVariants
         ?.filter {
-            logger.log(LogLevel.INFO, "${it.buildType.name == "release"}")
             it.buildType.name == "release"
         }
 
