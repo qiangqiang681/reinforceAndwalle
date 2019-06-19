@@ -70,7 +70,7 @@ AppReinforce {
     autoMultChannel = true
     walleChannelWritterPath = "${projectDir.path}/walle-cli-all.jar"
     extraChannelFilePath = "${projectDir.path}/reinforceChannel.json"
-    channelsOutputFilePath = new File("${project.buildDir}/channels")
+    channelsOutputFilePath = "${project.buildDir}/channels"
 
     reinforce360 {
         // 支持该加固
